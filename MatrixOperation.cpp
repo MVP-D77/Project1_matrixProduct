@@ -4,23 +4,48 @@
 #include "MatrixOperation.h"
 #include <immintrin.h>
 #include <omp.h>
+#include <stdlib.h>
 
+
+
+bool judgeLength(string text)
+{
+    int i;
+    for(i=0;i<text.length();i++){
+        if(!isdigit(text[i])) break;
+    }
+    if(i == text.length()) return true;
+    else return false;
+}
 
 void initialization(matrix &matrix,string number){
     cout<<"Please input the row number of "<<number<<" matrix: ";
-    cin>>matrix.rowNumber;
+    string number1;
+    cin>>number1;
+    while(!judgeLength(number1)){
+        cout<<"The row number must be a integer,please check!";
+        cin>>number1;
+    }
+    matrix.rowNumber  = stoi(number1);
     cout<<"Please input the column number of "<<number<<" matrix: ";
-    cin>>matrix.columnNumber;
+    string number2;
+    cin>>number2;
+    while(!judgeLength(number2)){
+        cout<<"The column number must be a integer,please check!";
+        cin>>number2;
+    }
+    matrix.columnNumber  = stoi(number2);
+
     matrix.value = new float [matrix.rowNumber*matrix.columnNumber]();
 
     cout<<"Please input the value of "<<number<<" matrix:"<<endl;
     for(int i=0;i<matrix.rowNumber*matrix.columnNumber;i++){
         string temp;
         cin>>temp;
-        if(judge(temp)) *(matrix.value+i) = stof(temp);
-        else {
-            cout<<"your input has illegal items or not float,Please check!";
-            return;
+        if(judge(temp))*(matrix.value+i) = stof(temp);
+        else{
+            cout<<"Your input has illegal items ,Please check!"<<endl;
+            exit(0);
         }
 //        cout<<*(matrix.value+i);
     }
@@ -84,13 +109,17 @@ void userInput(){
 //    showMatrix(firstMatrix);
 
     matrix secondMatrix;
+
+
     initialization(secondMatrix,"second");
-//    showMatrix(secondMatrix);
 
     if(firstMatrix.columnNumber!=secondMatrix.rowNumber){
         cout<<"Wrong!! Please input right mxn and nxp matrixes"<<endl;
         return;
     }
+//    showMatrix(secondMatrix);
+
+
     matrix matrixResult = {firstMatrix.rowNumber,secondMatrix.columnNumber};
     matrixResult.value = new float [matrixResult.rowNumber*matrixResult.columnNumber]();
 
@@ -191,11 +220,11 @@ void checkSpeed4(matrix matrix1,matrix matrix2,matrix resultMatrix){
 //    }
 //    showMatrix(matrix2);
 //    cout<<"================================"<<endl;
-
-
+//
+//
     transposition(matrix2);
-
-
+//
+//
 //    showMatrix(matrix2);
 //    cout<<"================================"<<endl;
 //    omp_set_num_threads(4);
@@ -332,4 +361,7 @@ void transposition(matrix matrix1){
             *(matrix1.value+j*matrix1.rowNumber+i) = temp;
         }
     }
+    int temp = matrix1.columnNumber;
+    matrix1.columnNumber = matrix1.rowNumber;
+    matrix1.rowNumber = temp;
 }
