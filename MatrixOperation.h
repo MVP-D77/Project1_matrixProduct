@@ -27,6 +27,7 @@ void checkSpeed3(matrix matrix1,matrix matrix2,matrix resultMatrix);
 void checkSpeed4(matrix matrix1,matrix matrix2,matrix resultMatrix);
 
 void clear(matrix);
+bool judgeLength(string text);
 float dotproduct1(const float *p1, const float * p2, size_t n, size_t temp);
 float dotproduct2(const float *p1, const float * p2, size_t n,size_t temp);
 float dotproduct3(const float *p1, const float * p2, size_t n,size_t temp);
