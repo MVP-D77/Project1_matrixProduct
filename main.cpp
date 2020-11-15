@@ -3,8 +3,10 @@
 #include <cblas.h>
 
 
-#define LENGTH 10000
+#define LENGTH 14000
 
+
+///usr/local/Cellar/gcc/10.2.0/bin/g++-10 main.cpp MatrixOperation.cpp  -fopenmp -mavx2 -std=c++11 -I/usr/local/Cellar/openblas/0.3.10_2/include -L/usr/local/Cellar/openblas/0.3.10_2/lib -lopenBlas -O3
 
 int main() {
     cout<<"Please select which operation do you want!!!"<<endl;
@@ -18,10 +20,10 @@ int main() {
         matrix matrix2 = {LENGTH,LENGTH,new float [LENGTH*LENGTH]()};
 
         matrix matrixResult = {LENGTH,LENGTH,new float [LENGTH*LENGTH]()};
-//
-//        checkSpeed1(matrix1,matrix2,matrixResult);
-//        checkSpeed1(matrix1,matrix2,matrixResult);
 
+//        checkSpeed1(matrix1,matrix2,matrixResult);
+//        checkSpeed1(matrix1,matrix2,matrixResult);
+//
 //        auto start = std::chrono::steady_clock::now();
 //        checkSpeed1(matrix1,matrix2,matrixResult);
 //        auto end = std::chrono::steady_clock::now();
@@ -33,7 +35,7 @@ int main() {
 //        auto end2 = std::chrono::steady_clock::now();
 //        auto duration2 = std::chrono::duration_cast<std::chrono::milliseconds>(end2 - start2).count();
 //        cout << "matrixProduct 2 , duration = " << duration2 <<" ms"<< std::endl;
-////
+//
 //        auto start3 = std::chrono::steady_clock::now();
 //        checkSpeed3(matrix1,matrix2,matrixResult);
 //        auto end3 = std::chrono::steady_clock::now();
